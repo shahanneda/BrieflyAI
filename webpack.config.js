@@ -55,6 +55,7 @@ module.exports = {
 			patterns: [
 				{ from: './src/manifest.json' },
 				{from: './src/icons/icon.png',to: 'icons/icon.png'},
+				{from: './src/*.css',to: '[name].css'},
 
 			],
 		}),
