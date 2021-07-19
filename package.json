@@ -17,7 +17,9 @@
     "webpack-dev-server": "^3.11.2"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev":"concurrently \"npm:watch:build:dev\" \"npm:watch:firefox\" ",
+    "watch:build:dev":"webpack --watch",
+    "watch:firefox": "cd dist && web-ext run"
   },
   "repository": {
     "type": "git",
