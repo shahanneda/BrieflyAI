@@ -8,10 +8,10 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
 	entry: {
-		background_script: './src/background_script.js',
-		content_script: './src/content_script.js',
-		pageAction: './src/pageAction/script.js',
-		options: './src/options/script.js',
+		background_script: './src/background_script.ts',
+		content_script: './src/content_script.ts',
+		pageAction: './src/pageAction/script.ts',
+		options: './src/options/script.ts',
 	},
 
 	output: {
@@ -48,7 +48,7 @@ module.exports = {
 		new CopyWebpackPlugin({
 			patterns: [
 				{ from: './src/manifest.json' },
-				{ from: './src/icons/icon.png', to: 'icons/icon.png' },
+				{from: './src/icons/icon.png',to: 'icons/icon.png'},
 
 			],
 		}),

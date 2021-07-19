@@ -3,6 +3,8 @@
 // Put all the javascript code here, that you want to execute in background.
 
 
+import { browser } from "webextension-polyfill-ts";
+
 
 browser.contextMenus.removeAll()
 browser.contextMenus.create({
@@ -12,6 +14,8 @@ browser.contextMenus.create({
       }, onContextMenuCreated);
 
 
-function onContextMenuCreated(e){
-	console.log("context created", e);
+
+
+function onContextMenuCreated(){
+	console.log("context created");
 }
