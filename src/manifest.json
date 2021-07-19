@@ -1,12 +1,12 @@
 {
   "manifest_version": 2,
   "name": "BriefAI",
-  "description": "Summary",
+  "description": "Summary creator.",
   "version": "0.001",
   "icons": {
     "64": "icons/icon.png"
   },
-  "web_accessible_resources": ["summaryModal.html"],
+  "web_accessible_resources": ["summaryModal.html", "summaryModal.js"],
   "permissions": ["contextMenus"],
   "background": {
     "scripts": [
@@ -20,18 +20,13 @@
         "https://*/*"
       ],
 
+      "all_frames": true,
       "js": [
         "content_script.js"
       ]
+
     }
   ],
-  // "browser_action": {
-  //   "default_icon": {
-  //     "64": "icons/icon.png"
-  //   },
-  //   "default_popup": "browserAction/index.html",
-  //   "default_title": "BriefAI"
-  // },
   "page_action": {
     "default_icon": {
       "64": "icons/icon.png"

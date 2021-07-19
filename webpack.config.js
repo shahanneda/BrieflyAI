@@ -12,6 +12,7 @@ module.exports = {
 		content_script: './src/content_script.ts',
 		pageAction: './src/pageAction/script.ts',
 		options: './src/options/script.ts',
+		summaryModal: './src/summaryModal.ts',
 	},
 
 	output: {
@@ -27,7 +28,6 @@ module.exports = {
 		extensions: ['.tsx', '.ts', '.js'],
 	},
 	devtool: false,
-
 	plugins: [
 		new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
 
@@ -45,7 +45,7 @@ module.exports = {
 		}),
 		new HtmlWebpackPlugin({
 			inject: false,
-			chunks: [],
+			chunks: ["summaryModal"],
 			template: './src/summaryModal.html',
 			filename: 'summaryModal.html'
 		}),
