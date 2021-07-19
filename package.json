@@ -1,0 +1,31 @@
+{
+  "name": "brieflyai",
+  "version": "1.0.0",
+  "description": "",
+  "main": "background_script.js",
+  "dependencies": {},
+  "devDependencies": {
+    "clean-webpack-plugin": "^4.0.0-alpha.0",
+    "copy-webpack-plugin": "^9.0.1",
+    "html-webpack-plugin": "^4.5.2",
+    "web-ext-plugin": "^1.3.1",
+    "webextension-polyfill": "^0.8.0",
+    "webpack": "^5.45.1",
+    "webpack-cli": "^4.7.2",
+    "webpack-dev-middleware": "^5.0.0",
+    "webpack-dev-server": "^3.11.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shahanneda/BrieflyAI.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shahanneda/BrieflyAI/issues"
+  },
+  "homepage": "https://github.com/shahanneda/BrieflyAI#readme"
+}
