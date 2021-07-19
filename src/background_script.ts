@@ -11,11 +11,19 @@ browser.contextMenus.create({
 	id: "briefai-summary-context-menu",
 	title: "Summargyr",
 	contexts: ["selection"]
-      }, onContextMenuCreated);
+}, onContextMenuCreated);
 
 
 
+browser.contextMenus.onClicked.addListener((info, tab) => {
+	if (info.selectionText){
 
-function onContextMenuCreated(){
+	}
+	browser.tabs.sendMessage(tab.id, "openSummaryModal")
+})
+
+
+
+function onContextMenuCreated() {
 	console.log("context created");
 }

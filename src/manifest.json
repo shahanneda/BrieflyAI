@@ -15,8 +15,10 @@
   "content_scripts": [
     {
       "matches": [
-        "*://*.mozilla.org/*"
+        "http://*/*",
+        "https://*/*"
       ],
+
       "js": [
         "content_script.js"
       ]
