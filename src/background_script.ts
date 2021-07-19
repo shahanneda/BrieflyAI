@@ -9,7 +9,7 @@ import { browser } from "webextension-polyfill-ts";
 browser.contextMenus.removeAll()
 browser.contextMenus.create({
 	id: "briefai-summary-context-menu",
-	title: "Summargyr",
+	title: "Summary",
 	contexts: ["selection"]
 }, onContextMenuCreated);
 
