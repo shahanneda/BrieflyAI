@@ -43,6 +43,12 @@ module.exports = {
 			template: './src/options/index.html',
 			filename: 'options/index.html'
 		}),
+		new HtmlWebpackPlugin({
+			inject: false,
+			chunks: [],
+			template: './src/summaryModal.html',
+			filename: 'summaryModal.html'
+		}),
 
 
 		new CopyWebpackPlugin({

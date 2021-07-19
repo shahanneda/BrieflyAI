@@ -6,6 +6,7 @@
   "icons": {
     "64": "icons/icon.png"
   },
+  "web_accessible_resources": ["summaryModal.html"],
   "permissions": ["contextMenus"],
   "background": {
     "scripts": [
