@@ -21,7 +21,7 @@ browser.runtime.onMessage.addListener((messege, sender) => {
 		iframe.style.border = "none";
 		iframe.style.width = "50vw";
 		iframe.style.height = "50vh";
-		iframe.style.border = "5px solid black"
+		// iframe.style.border = "5px solid black"
 		// iframe.style.top = (mouseY + document.documentElement.clientHeight * 0.25) + "px";
 		// iframe.style.left = (mouseX - document.documentElement.clientWidth * 0.25) + "px";
 
@@ -55,10 +55,15 @@ window.addEventListener("message", (event) => {
 	if (event.data && event.data.name && event.data.name == "briefai-summary-dragend-iframe" && oldiFrame) {
 		oldiFrame.style.pointerEvents = "auto"
 	}
+	if (event.data && event.data.name && event.data.name == "briefai-summary-close-iframe" && oldiFrame) {
+		oldiFrame.remove()
+	}
 });
 
 function setiFramePosition(iframe: HTMLIFrameElement) {
 	console.log("stting postiion to" + mouseX + " " + mouseY);
-	iframe.style.top = mouseY + "px";
-	iframe.style.left = mouseX + "px";
+	iframe.style.top = mouseY+ "px";
+	// iframe.style.top = mouseY- iframe.clientHeight/2 + "px";
+	iframe.style.left = mouseX - iframe.clientWidth/2+ "px";
+	// iframe.style.left = mouseX - iframe.clientWidth/2+ "px";
 }

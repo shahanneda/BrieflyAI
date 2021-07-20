@@ -4,7 +4,6 @@ console.log("inside!")
 
 
 document.getElementById("drag").addEventListener("drag", (e) => {
-	console.log("drag middle f" + e.clientX+ " " + e.pageY); 
 	window.parent.postMessage({name:"briefai-summary-drag-iframe"}, "*");
 	// window.parent.document.dispatchEvent(new CustomEvent("drag-on-summary-iframe"));
 });
@@ -16,7 +15,10 @@ document.getElementById("drag").addEventListener("dragend", (e) => {
 	window.parent.postMessage({name:"briefai-summary-dragend-iframe"}, "*");
 });
 
+document.getElementById("close").addEventListener("click", (e) => {
+	window.parent.postMessage({name:"briefai-summary-close-iframe"}, "*");
+});
+
 window.addEventListener("dragover", (e) => {
 	// window.parent.postMessage({name:"briefai-summary-drag-over-iframe", x: e.clientX, y:e.clientY}, "*");
-
 });
