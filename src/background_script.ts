@@ -17,15 +17,15 @@ browser.contextMenus.create({
 
 browser.contextMenus.onClicked.addListener((info, tab) => {
 	if (info.selectionText) {
-
+		browser.tabs.sendMessage(tab.id, {name:"openSummaryModal", text:info.selectionText});
 	}
+
 	// let panl = browser.windows.create({
 	// 	type: "panel",
 	// 	url: "summaryModal.html#detachedPanel",
 	// 	width: 250,
 	// 	height: 100
 	// });
-	browser.tabs.sendMessage(tab.id, "openSummaryModal")
 })
 
 

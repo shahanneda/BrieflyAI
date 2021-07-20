@@ -10,6 +10,9 @@ document.getElementById("drag").addEventListener("drag", (e) => {
 
 document.getElementById("drag").addEventListener("dragstart", (e) => {
 	window.parent.postMessage({name:"briefai-summary-dragstart-iframe"}, "*");
+	e.dataTransfer.setData('text/html', "summary data drag"); //cannot be empty string
+
+
 });
 document.getElementById("drag").addEventListener("dragend", (e) => {
 	window.parent.postMessage({name:"briefai-summary-dragend-iframe"}, "*");

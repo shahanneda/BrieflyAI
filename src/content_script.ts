@@ -12,24 +12,28 @@ browser.runtime.onMessage.addListener((messege, sender) => {
 		oldiFrame.remove();
 	}
 
-	if (messege == "openSummaryModal") {
+	if (messege && messege.name == "openSummaryModal") {
 		// console.log("doing sut")
 		var iframe = document.createElement('iframe');
-		iframe.src = browser.runtime.getURL(`summaryModal.html#x:${mouseX}y:${mouseY}`);
+		iframe.src = browser.runtime.getURL(`summaryModal.html#text=${messege.text}`);
 		iframe.id = "briefai-summary-modal";
 		iframe.style.position = "fixed";
 		iframe.style.border = "none";
-		iframe.style.width = "50vw";
-		iframe.style.height = "50vh";
+		iframe.style.width = "80vw";
+		iframe.style.height = "80vh";
+		iframe.style.resize = "both";
 		// iframe.style.border = "5px solid black"
 		// iframe.style.top = (mouseY + document.documentElement.clientHeight * 0.25) + "px";
 		// iframe.style.left = (mouseX - document.documentElement.clientWidth * 0.25) + "px";
 
-		setiFramePosition(iframe);
+
 		iframe.style.zIndex = "9999";
 
 		oldiFrame = iframe;
 		document.body.appendChild(iframe);
+
+		console.log(iframe.clientWidth)
+		setiFramePosition(iframe, document.documentElement.clientWidth/2 , 0);
 	}
 });
 
@@ -40,6 +44,7 @@ document.addEventListener("drag-on-summary-iframe", (event) => {
 document.addEventListener("dragover", (e) => {
 	mouseX = e.clientX;
 	mouseY = e.clientY;
+	console.log("mouse x and y are", mouseX, mouseY);
 });
 
 window.addEventListener("message", (event) => {
@@ -60,10 +65,11 @@ window.addEventListener("message", (event) => {
 	}
 });
 
-function setiFramePosition(iframe: HTMLIFrameElement) {
-	console.log("stting postiion to" + mouseX + " " + mouseY);
-	iframe.style.top = mouseY+ "px";
+function setiFramePosition(iframe: HTMLIFrameElement, x: number = mouseX, y: number = mouseY) {
+
+	console.log("stting postiion to" + x + " " + y);
+	iframe.style.top = y+ "px";
 	// iframe.style.top = mouseY- iframe.clientHeight/2 + "px";
-	iframe.style.left = mouseX - iframe.clientWidth/2+ "px";
+	iframe.style.left = x - iframe.clientWidth/2+ "px";
 	// iframe.style.left = mouseX - iframe.clientWidth/2+ "px";
 }
