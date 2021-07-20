@@ -2,28 +2,30 @@
 import { browser } from "webextension-polyfill-ts";
 
 
-var mouseX;
-var mouseY;
+var mouseX = 0;
+var mouseY = 0;
 
-let oldiFrame: HTMLIFrameElement= null;
+let oldiFrame: HTMLIFrameElement = null;
 
 browser.runtime.onMessage.addListener((messege, sender) => {
-	if(oldiFrame) {
+	if (oldiFrame) {
 		oldiFrame.remove();
 	}
 
 	if (messege == "openSummaryModal") {
-		console.log("doing sut")
-
+		// console.log("doing sut")
 		var iframe = document.createElement('iframe');
-		iframe.src = browser.runtime.getURL("summaryModal.html");
-		// iframe.id = "myFrame";
+		iframe.src = browser.runtime.getURL(`summaryModal.html#x:${mouseX}y:${mouseY}`);
+		iframe.id = "briefai-summary-modal";
 		iframe.style.position = "fixed";
 		iframe.style.border = "none";
 		iframe.style.width = "50vw";
 		iframe.style.height = "50vh";
-		iframe.style.top = (mouseY +  document.documentElement.clientHeight * 0.25) + "px";
-		iframe.style.left = (mouseX -  document.documentElement.clientWidth * 0.25) + "px";
+		iframe.style.border = "5px solid black"
+		// iframe.style.top = (mouseY + document.documentElement.clientHeight * 0.25) + "px";
+		// iframe.style.left = (mouseX - document.documentElement.clientWidth * 0.25) + "px";
+
+		setiFramePosition(iframe);
 		iframe.style.zIndex = "9999";
 
 		oldiFrame = iframe;
@@ -31,8 +33,26 @@ browser.runtime.onMessage.addListener((messege, sender) => {
 	}
 });
 
-document.addEventListener("mousemove", (e) => {
+document.addEventListener("drag-on-summary-iframe", (event) => {
+	alert("drag");
+});
+
+document.addEventListener("dragover", (e) => {
 	mouseX = e.clientX;
 	mouseY = e.clientY;
 });
 
+window.addEventListener("message", (event) => {
+	console.log(event.origin, event.data , event.target, event.type);
+	if (event.data && event.data.name && event.data.name == "briefai-summary-drag-iframe" && oldiFrame) {
+		console.log(event.data)
+		setiFramePosition(oldiFrame);
+	}
+
+});
+
+function setiFramePosition(iframe: HTMLIFrameElement) {
+	console.log("stting postiion to" + mouseX + " " + mouseY);
+	iframe.style.top = mouseY + "px";
+	iframe.style.left = mouseX + "px";
+}
