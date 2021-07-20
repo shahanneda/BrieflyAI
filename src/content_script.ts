@@ -49,6 +49,12 @@ window.addEventListener("message", (event) => {
 		setiFramePosition(oldiFrame);
 	}
 
+	if (event.data && event.data.name && event.data.name == "briefai-summary-dragstart-iframe" && oldiFrame) {
+		oldiFrame.style.pointerEvents = "none"
+	}
+	if (event.data && event.data.name && event.data.name == "briefai-summary-dragend-iframe" && oldiFrame) {
+		oldiFrame.style.pointerEvents = "auto"
+	}
 });
 
 function setiFramePosition(iframe: HTMLIFrameElement) {
