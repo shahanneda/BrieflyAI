@@ -33,7 +33,34 @@ module.exports = {
 					]
 				}
 			}
-		}],
+		},
+		{
+			test: /\.css$/,
+			use: [
+				{
+					loader: 'style-loader'
+				},
+				{
+					loader: 'css-loader'
+				},
+				{
+					loader: 'postcss-loader',
+					options: {
+						postcssOptions:
+						{
+							plugins: ['postcss-preset-env', 'autoprefixer']
+						}
+					}
+
+				},
+				// {
+				// 	loader: 'sass-loader'
+				// }
+
+
+			]
+		}
+		],
 	},
 
 	resolve: {
@@ -67,7 +94,7 @@ module.exports = {
 			patterns: [
 				{ from: './src/manifest.json' },
 				{ from: './src/icons/icon.png', to: 'icons/icon.png' },
-				{ from: './src/css/*.css', to: '[name].css' },
+				// { from: './src/css/*.css', to: '[name].css' },
 
 			],
 		}),

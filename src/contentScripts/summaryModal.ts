@@ -6,6 +6,10 @@ const parsedHash = new URLSearchParams(window.location.hash.substr(1));
 // this is just so there is autocomplete for the summary modal input params from the background script
 let option = converURLSearchParamsToObject(parsedHash) as unknown as SummaryModaOptions;
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+import "../css/summaryModal.css"
+
+
 
 
 // @ts-ignore ignore this since we are checking for something not in typescript types
@@ -14,10 +18,11 @@ const isChrome = !!window.chrome as boolean;
 
 setupDrag();
 
+showSummaryToUser("test");
 
-getSummaryFromApi(option.text).then(sum => {
-	showSummaryToUser(sum);
-});
+// getSummaryFromApi(option.text).then(sum => {
+// 	showSummaryToUser(sum);
+// });
 
 
 async function getSummaryFromApi(text: String): Promise<String> {
