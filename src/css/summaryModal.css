@@ -56,6 +56,9 @@ html {
 	font-family: sans-serif;
 	width: 10%;
 	display: table;
+	height: 50px;
+	width: 50px;
+	cursor: pointer;
 }
 
 .content {

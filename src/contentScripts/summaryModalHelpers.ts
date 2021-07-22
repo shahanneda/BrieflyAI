@@ -1,4 +1,4 @@
-export default function setupDrag() {
+export function setupDrag() {
 	document.getElementById("drag").addEventListener("drag", (e) => {
 		window.parent.postMessage({ name: "briefai-summary-drag-iframe" }, "*");
 		// window.parent.document.dispatchEvent(new CustomEvent("drag-on-summary-iframe"));
@@ -13,10 +13,14 @@ export default function setupDrag() {
 		window.parent.postMessage({ name: "briefai-summary-dragend-iframe" }, "*");
 	});
 
-	document.getElementById("close").addEventListener("click", (e) => {
-		window.parent.postMessage({ name: "briefai-summary-close-iframe" }, "*");
-	});
 
 	window.addEventListener("dragover", (e) => {
+	});
+}
+
+export function setupClose() {
+	document.getElementById("close").addEventListener("click", (e) => {
+		window.parent.postMessage({ name: "briefai-summary-close-iframe" }, "*");
+		frameElement.parentNode.removeChild(frameElement);
 	});
 }

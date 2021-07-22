@@ -1,5 +1,5 @@
 import { converURLSearchParamsToObject } from "../helper/helper";
-import setupDrag from "./summaryModalDrag";
+import {setupDrag, setupClose} from "./summaryModalHelpers";
 import { SummaryModaOptions } from "./summaryModalTypes";
 
 const parsedHash = new URLSearchParams(window.location.hash.substr(1));
@@ -17,8 +17,9 @@ const isChrome = !!window.chrome as boolean;
 
 
 setupDrag();
+setupClose();
 
-showSummaryToUser("test");
+// showSummaryToUser("test");
 
 // getSummaryFromApi(option.text).then(sum => {
 // 	showSummaryToUser(sum);
