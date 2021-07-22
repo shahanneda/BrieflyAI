@@ -9,10 +9,10 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 module.exports = {
 	entry: {
 		background_script: './src/background_script.ts',
-		content_script: './src/content_script.ts',
+		content_script: './src/contentScripts/content_script.ts',
 		pageAction: './src/pageAction/script.ts',
 		options: './src/options/script.ts',
-		summaryModal: './src/summaryModal.ts',
+		summaryModal: './src/contentScripts/summaryModal.ts',
 	},
 
 	output: {
@@ -21,7 +21,16 @@ module.exports = {
 	},
 
 	module: {
-		rules: [{ test: /\.tsx?$/, use: 'ts-loader', exclude: /node_modules/ }],
+		rules: [{
+			test: /\.tsx?$/,
+			exclude: /node_modules/,
+			use: {
+			  loader: "babel-loader",
+			  options: {
+			    presets: ['@babel/preset-typescript', '@babel/preset-env']
+			  }
+			}
+		}],
 	},
 
 	resolve: {
@@ -46,7 +55,7 @@ module.exports = {
 		new HtmlWebpackPlugin({
 			inject: false,
 			chunks: ["summaryModal"],
-			template: './src/summaryModal.html',
+			template: './src/contentScripts/summaryModal.html',
 			filename: 'summaryModal.html'
 		}),
 
@@ -54,8 +63,8 @@ module.exports = {
 		new CopyWebpackPlugin({
 			patterns: [
 				{ from: './src/manifest.json' },
-				{from: './src/icons/icon.png',to: 'icons/icon.png'},
-				{from: './src/*.css',to: '[name].css'},
+				{ from: './src/icons/icon.png', to: 'icons/icon.png' },
+				{ from: './src/css/*.css', to: '[name].css' },
 
 			],
 		}),
