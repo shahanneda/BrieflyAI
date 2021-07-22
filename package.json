@@ -3,9 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "main": "background_script.js",
-  "dependencies": {},
+  "dependencies": {
+    "@babel/runtime": "^7.14.8"
+  },
   "devDependencies": {
     "@babel/core": "^7.14.8",
+    "@babel/plugin-transform-runtime": "^7.14.5",
     "@babel/preset-env": "^7.14.8",
     "@babel/preset-typescript": "^7.14.5",
     "babel-loader": "^8.2.2",
