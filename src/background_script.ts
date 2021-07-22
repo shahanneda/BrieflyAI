@@ -4,6 +4,7 @@
 
 
 import { browser } from "webextension-polyfill-ts";
+import { SummaryModaOptions } from "./contentScripts/summaryModalTypes";
 
 
 browser.contextMenus.removeAll()
@@ -17,6 +18,8 @@ browser.contextMenus.create({
 
 browser.contextMenus.onClicked.addListener((info, tab) => {
 	if (info.selectionText) {
+
+
 		browser.tabs.sendMessage(tab.id, {name:"openSummaryModal", text:info.selectionText});
 	}
 

@@ -1,5 +1,6 @@
 // Put all the javascript code here, that you want to execute after page load.
 import { browser } from "webextension-polyfill-ts";
+import { SummaryModaOptions } from "./summaryModalTypes";
 
 
 var mouseX = 0;
@@ -15,7 +16,16 @@ browser.runtime.onMessage.addListener((messege, sender) => {
 	if (messege && messege.name == "openSummaryModal") {
 		// console.log("doing sut")
 		var iframe = document.createElement('iframe');
-		iframe.src = browser.runtime.getURL(`summaryModal.html#text=${messege.text}`);
+
+		let summaryModalOptions : SummaryModaOptions = {
+			apiKey:"",
+			text: messege.text,
+			apiUrl: "http://localhost:8080/api"
+		}
+
+		let urlParams = Object.entries(summaryModalOptions).map(([key, val]) => `${key}=${encodeURIComponent(val)}`).join('&');
+
+		iframe.src = browser.runtime.getURL(`summaryModal.html#`+ urlParams);
 		iframe.id = "briefai-summary-modal";
 		iframe.style.position = "fixed";
 		iframe.style.border = "none";
