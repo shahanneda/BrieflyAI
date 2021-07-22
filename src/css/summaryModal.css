@@ -7,7 +7,7 @@ h1 {
 }
 
 #title {
-	border-bottom: 2px solid gray;
+	/* border-bottom: 2px solid gray; */
 	font-size: black;
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 	text-align: center;
@@ -59,7 +59,8 @@ html {
 }
 
 .content {
-	background-color: #c5e9f4;
+	/* background-color: #c5e9f4; */
+	background-color: #e7f9ff;
 	width: 90%;
 	height: 80%;
 	padding: 0;
@@ -84,7 +85,7 @@ html {
 .container {}
 
 #summary {
-	background-color: #b3edff;
+	/* background-color: #e7f9ff; */
 	padding: 10rem;
 	border-radius: 30px;
 	font-family: sans-serif;
