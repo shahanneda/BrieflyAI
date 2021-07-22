@@ -25,10 +25,13 @@ module.exports = {
 			test: /\.tsx?$/,
 			exclude: /node_modules/,
 			use: {
-			  loader: "babel-loader",
-			  options: {
-			    presets: ['@babel/preset-typescript', '@babel/preset-env']
-			  }
+				loader: "babel-loader",
+				options: {
+					presets: ['@babel/preset-typescript', '@babel/preset-env'],
+					plugins: [
+						["@babel/transform-runtime"]
+					]
+				}
 			}
 		}],
 	},
