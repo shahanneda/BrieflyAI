@@ -21,20 +21,19 @@ setupClose();
 
 // showSummaryToUser("test");
 
-// getSummaryFromApi(option.text).then(sum => {
-// 	showSummaryToUser(sum);
-// });
+getSummaryFromApi(option.text).then(sum => {
+	showSummaryToUser(sum);
+});
 
 
 async function getSummaryFromApi(text: String): Promise<String> {
-	let res = await fetch(option.apiUrl + "/getSummary?text=" + text);
-	res = await res.json();
-	console.log(res);
+	let res = await (await fetch(option.apiUrl + "/getSummary?text=" + text)).json();
 
 	if (res.status == "success") {
 		return res.summary;
 	} else {
-		return "error"
+		let error  = (res.error ? (`:${res.error}  <span class="text-danger"> (len ${text.length})</span>`) : "") + ".";
+		return "Could not summerize text" + error;
 	}
 }
 
