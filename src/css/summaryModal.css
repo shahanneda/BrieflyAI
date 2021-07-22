@@ -1,0 +1,66 @@
+#heading2 {
+	color: green;
+}
+
+h1 {
+	margin: 0;
+}
+
+#title {
+	border-bottom: 2px solid gray;
+	font-size: black;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	text-align: center;
+	padding-bottom: 4px;
+}
+
+body {
+	padding: 0;
+	margin: 0;
+	width: 100%;
+	height: 100%;
+	background-color: transparent;
+}
+
+html {
+	background-color: transparent;
+	overflow: none;
+	width: 100%;
+	height: 100%;
+	padding: 0;
+}
+
+#drag {
+	width: 100%;
+	height: 100%;
+}
+
+#drag-cont {
+	width: 90%;
+	height: 30px;
+	background-color: lightgray;
+	cursor: move;
+	cursor: grab;
+	display: flex;
+}
+
+#close {
+	text-align: center;
+	font-size: 32px;
+	background: black;
+	border: 1px solid gray;
+	border-radius: 29px;
+	color: white;
+	font-family: sans-serif;
+	width: 10%;
+}
+
+.content {
+	background-color: white;
+	width: 90%;
+	height: 80%;
+	padding: 0;
+	margin: 0;
+	border: 1px solid rgb(185, 185, 185);
+	border-top: none;
+}
