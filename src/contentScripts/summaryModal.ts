@@ -6,7 +6,6 @@ const parsedHash = new URLSearchParams(window.location.hash.substr(1));
 // this is just so there is autocomplete for the summary modal input params from the background script
 let option = converURLSearchParamsToObject(parsedHash) as unknown as SummaryModaOptions;
 
-import 'bootstrap/dist/css/bootstrap.min.css';
 import "../css/summaryModal.css"
 
 

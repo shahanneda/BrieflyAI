@@ -33,7 +33,7 @@ module.exports = {
 						"@babel/preset-react"
 					],
 					plugins: [
-						["@babel/transform-runtime"]
+						["@babel/transform-runtime", "babel-plugin-styled-components"]
 					]
 				}
 			}
