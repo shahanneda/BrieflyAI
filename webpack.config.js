@@ -10,8 +10,8 @@ module.exports = {
 	entry: {
 		background_script: './src/background_script.ts',
 		content_script: './src/contentScripts/content_script.ts',
-		pageAction: './src/pageAction/script.ts',
-		options: './src/options/script.ts',
+		browserPopup: './src/popup/browserPopup.tsx',
+		options: './src/options/options.ts',
 		summaryModal: './src/contentScripts/summaryModal.ts',
 	},
 
@@ -27,7 +27,11 @@ module.exports = {
 			use: {
 				loader: "babel-loader",
 				options: {
-					presets: ['@babel/preset-typescript', '@babel/preset-env'],
+					presets: [
+						'@babel/preset-typescript', 
+						'@babel/preset-env',
+						"@babel/preset-react"
+					],
 					plugins: [
 						["@babel/transform-runtime"]
 					]
@@ -64,7 +68,7 @@ module.exports = {
 	},
 
 	resolve: {
-		extensions: ['.tsx', '.ts', '.js'],
+		extensions: ['.tsx', '.ts', '.js', '.jsx'],
 	},
 	devtool: false,
 	plugins: [
@@ -72,15 +76,15 @@ module.exports = {
 
 		new HtmlWebpackPlugin({
 			inject: true,
-			chunks: ['pageAction'],
-			template: './src/pageAction/index.html',
-			filename: 'pageAction/index.html'
+			chunks: ['browserPopup'],
+			template: './src/popup/browserPopup.html',
+			filename: 'popup/browserPopup.html'
 		}),
 		new HtmlWebpackPlugin({
 			inject: true,
 			chunks: ['options'],
-			template: './src/options/index.html',
-			filename: 'options/index.html'
+			template: './src/options/options.html',
+			filename: 'options/options.html'
 		}),
 		new HtmlWebpackPlugin({
 			inject: false,
