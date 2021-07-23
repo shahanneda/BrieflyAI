@@ -7,7 +7,7 @@ import ReactDOM from "react-dom"
 import { HashRouter, Link, Route, Switch } from "react-router-dom"
 import Button from '@material-ui/core/Button';
 import { BottomNavigationAction, BottomNavigation } from "@material-ui/core";
-import { Favorite, Restore } from "@material-ui/icons"
+import {Home, AccountBox} from "@material-ui/icons"
 
 
 
@@ -25,16 +25,19 @@ function App() {
 				<Switch>
 					<Route path="/account" >
 						Account
-						<Link to="/">Home</Link>
-						<NavigationBar />
+
+						<div style={{padding: "100px"}}>
+							</div>
+						<NavigationBar currentPage="account"/>
 
 					</Route>
 
 					<Route path="/" >
 						Home
-						<Link to="/account">Account</Link>
 						<button onClick={() => setOption(!option)}> Option: {Boolean(option).toString()} </button>
-						<NavigationBar />
+						<div style={{padding: "100px"}}>
+							</div>
+						<NavigationBar currentPage="home"/>
 					</Route>
 				</Switch>
 			</HashRouter>
@@ -44,33 +47,33 @@ function App() {
 
 
 type NavigationBarProps = {
-	// currentPage: string,
-	// setCurrentPage: (page: string) => void,
+	currentPage: string,
 }
 
-const NavigationBar = ({ }: NavigationBarProps) => {
+const NavigationBar = ({currentPage}: NavigationBarProps) => {
+	console.log( window.location.hash);
 	const [value, setValue] = React.useState('Recents');
 
 	return (
 		<>
 			<BottomNavigation
-				value={value}
-				onChange={(event, newValue) => {
-					setValue(newValue);
-				}}
+				value={currentPage}
+				onChange={(event, value) => console.log(value)}
 			>
 					<BottomNavigationAction
 						component={Link}
-						label="Recents"
-						to="/"
-						icon={<Favorite />}
+						label="Home"
+						to="/home"
+						icon={<Home />}
+						value="home"
 					/>
 
 					<BottomNavigationAction
 						component={Link}
 						to="/account"
-						label="Favorites"
-						icon={<Favorite />}
+						label="Account"
+						icon={<AccountBox />}
+						value="account"
 					/>
 			</BottomNavigation>
 		</>
