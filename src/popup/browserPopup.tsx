@@ -8,19 +8,30 @@ import { HashRouter, Route, Switch } from "react-router-dom"
 import Button from '@material-ui/core/Button';
 import NavigationBar, { Page } from "@/components/BottomNavigator";
 import MyAccount from "@/components/MyAccount";
+import { CardHeader, makeStyles } from "@material-ui/core";
 
 
 
-// document.getElementById('go-to-options').addEventListener('click', (e) => {
-// 	browser.runtime.openOptionsPage();
-// });
+
+const useStyles = makeStyles({
+	root: {
+		width: "100%",
+		height: "100%",
+		display: "flex",
+		flexDirection: "column",
+		justifyContent:"space-between"
+
+	},
+	header: {
+	},
+})
+
 
 interface AppContextInterface {
 	loggedIn: boolean;
 }
-
-
 export const AppContext = React.createContext<AppContextInterface>(null);
+
 
 
 function App() {
@@ -31,6 +42,8 @@ function App() {
 		loggedIn: false,
 	});
 
+	const classes  = useStyles();
+
 
 
 
@@ -40,17 +53,18 @@ function App() {
 
 
 	return (
-		<>
-			<HashRouter>
+		<div className={classes.root}>
+			<HashRouter >
 				<AppContext.Provider value={appContext} >
 					<Switch>
 						<Route path="/account" >
+							<CardHeader title="My Account" class={classes.header} />
 							<MyAccount />
 							<NavigationBar currentPage={Page.account} />
 						</Route>
 
 						<Route path="/" >
-							Home
+							<CardHeader title="BriefAI" class={classes.header} />
 							<button onClick={() => setOption(!option)}> Option: {Boolean(option).toString()} </button>
 							<div style={{ padding: "100px" }}>
 							</div>
@@ -60,9 +74,10 @@ function App() {
 					</Switch>
 				</AppContext.Provider>
 			</HashRouter>
-		</>
+		</div>
 	);
 }
+
 
 
 console.log("browser popup");

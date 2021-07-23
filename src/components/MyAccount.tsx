@@ -1,5 +1,5 @@
 import { AppContext } from '@/popup/browserPopup';
-import { Button, createStyles, makeStyles, withStyles } from '@material-ui/core';
+import { Button, CardHeader, createStyles, makeStyles, withStyles } from '@material-ui/core';
 import React, { useContext } from 'react'
 
 interface MyAccountProps {
@@ -11,6 +11,16 @@ const useStyles = makeStyles({
 		marginBottom: '1em',
 		color: "blue"
 	},
+	root:{
+		display: 'flex',
+		flexDirection: 'column',
+		alignItems: 'center',
+		justifyContent: 'space-between',
+		height: '50%'
+
+
+
+	}
 });
 
 const MyAccount = ({ }: MyAccountProps) => {
@@ -19,12 +29,12 @@ const MyAccount = ({ }: MyAccountProps) => {
 
 
 	return (
-		<div>
-			<h1 className={classes.headerStyles}> My Account Page </h1>
+		<div className={classes.root}>
+			{/* <h1 className={classes.headerStyles}> My Account Page </h1> */}
 
-			<div>
+			{/* <div>
 				You are currently {appContext.loggedIn ? 'logged in' : 'not logged in'}.
-			</div>
+			</div> */}
 			<Button variant="contained" color="primary" >Login</Button>
 
 		</div>
