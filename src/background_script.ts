@@ -21,11 +21,11 @@ browser.contextMenus.onClicked.addListener((info, tab) => {
 		browser.tabs.sendMessage(tab.id, {name:"openSummaryModal", text:info.selectionText});
 	}
 
-	// let panl = browser.windows.create({
+	// let panel = browser.windows.create({
 	// 	type: "panel",
-	// 	url: "summaryModal.html#detachedPanel",
-	// 	width: 250,
-	// 	height: 100
+	// 	url: "popup/browserPopup.html",
+	// 	width: 1000,
+	// 	height: 1000
 	// });
 })
 

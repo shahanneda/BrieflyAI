@@ -24,19 +24,25 @@ module.exports = {
 		rules: [{
 			test: /\.tsx?$/,
 			exclude: /node_modules/,
-			use: {
+			use: [{
 				loader: "babel-loader",
 				options: {
 					presets: [
-						'@babel/preset-typescript', 
+						// '@babel/preset-typescript',
 						'@babel/preset-env',
 						"@babel/preset-react"
 					],
 					plugins: [
-						["@babel/transform-runtime", "babel-plugin-styled-components"]
+						"@babel/transform-runtime",
+						"babel-plugin-styled-components"
 					]
 				}
+			},
+
+			{
+				loader:"ts-loader",
 			}
+		]
 		},
 		{
 			test: /\.css$/,
@@ -69,6 +75,9 @@ module.exports = {
 
 	resolve: {
 		extensions: ['.tsx', '.ts', '.js', '.jsx'],
+		alias: {
+      '@': path.resolve(__dirname, 'src/'),
+    }
 	},
 	devtool: false,
 	plugins: [
