@@ -27,14 +27,14 @@
 
     }
   ],
-  "page_action": {
-    "default_icon": {
-      "64": "icons/icon.png"
-    },
-    "default_popup": "pageAction/index.html",
-    "default_title": "BriefAI"
-  },
-  "options_ui": {
-    "page": "options/index.html"
+
+  "browser_action": {
+    "default_icon": "icons/icon.png",
+    "default_title": "BriefAI Popup",
+    "default_popup": "popup/browserPopup.html"
   }
+
+  // "options_ui": {
+  //   "page": "options/options.html"
+  // }
 }
