@@ -33,13 +33,14 @@ interface AppContextInterface {
 export const AppContext = React.createContext<AppContextInterface>(null);
 
 
-function getLoginData(){
-	browser.storage.local.get("userCred").then( userCred => {
-		console.log("GOT USER CRED IN POPUP", userCred);
-	});;
+let userCred = null;
+
+async function getLoginData(){
+	userCred = await browser.storage.local.get("userCred");
+
+	console.log("GOT USER CRED IN POPUP", userCred);
 }
 
-getLoginData();
 
 function App() {
 	const [option, setOption] = React.useState(false);
@@ -56,6 +57,9 @@ function App() {
 
 
 
+	getLoginData().then( () => {
+		console.log("GOT USER DATA IN USRE DATA STUFF", userCred);
+	});
 
 
 

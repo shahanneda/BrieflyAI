@@ -15,12 +15,19 @@ browser.contextMenus.create({
 	contexts: ["selection"]
 }, onContextMenuCreated);
 
+const firebaseConfig = {
+
+	apiKey: "AIzaSyBVt7auzyHmjah2l2e9jkGOv5sRf8NVmQA",
+	authDomain: "briefai.firebaseapp.com",
+	projectId: "briefai",
+	storageBucket: "briefai.appspot.com",
+	messagingSenderId: "699384139949",
+	appId: "1:699384139949:web:bda0db6df75c2928daf624"
+};
+
+firebase.initializeApp(firebaseConfig);
 
 
-// var provider = new firebase.auth.EmailAuthProvider();
-// firebase
-// 	.auth()
-// 	.signInWithPopup(provider)
 
 browser.runtime.onMessage.addListener((msg, sender) => {
 	if (msg && msg.name == "login-request") {
@@ -33,6 +40,7 @@ browser.runtime.onMessage.addListener((msg, sender) => {
 	}
 
 	if (msg && msg.name == "briefai-auth-result") {
+		console.log("got brief ai login done message");
 		gotLoginDataFromAuth(msg);
 	}
 });
@@ -57,18 +65,19 @@ function onContextMenuCreated() {
 }
 
 
-function gotLoginDataFromAuth(msg){
-		let userAuthObject = msg.user;
-		let idToken = userAuthObject.oauthIdToken;
-		let fbAuthObject = firebase.auth.AuthCredential.fromJSON(userAuthObject);
+function gotLoginDataFromAuth(msg) {
+	let userAuthObject = msg.user;
+	let idToken = userAuthObject.oauthIdToken;
+	let fbAuthObject = firebase.auth.AuthCredential.fromJSON(userAuthObject);
 
-		console.log("got the sign in cred, trying firebase login");
+	console.log("got the sign in cred, trying firebase login");
 
-		firebase.auth().signInWithCredential(fbAuthObject).then( userCred => {
-			console.log("GOT USER CREDS in BG Script", userCred)
+	firebase.auth().signInWithCredential(fbAuthObject).then(userCred => {
+		console.log("GOT USER CREDS in BG Script", userCred)
 
-			// browser.storage.local.set({userCred: userCred});
-			// browser.storage.local.set({userBill: "bill haha" });
-			console.log("set data")
-		});
+
+		browser.storage.local.set({userCred: userCred.user.toJSON()});
+		browser.storage.local.set({userBill: "bill haha" });
+		console.log("set data")
+	});
 }
