@@ -8,10 +8,12 @@ var mouseY = 0;
 
 let oldiFrame: HTMLIFrameElement = null;
 
+browser.runtime.sendMessage("from background script");
 browser.runtime.onMessage.addListener((messege, sender) => {
 	if (oldiFrame) {
 		oldiFrame.remove();
 	}
+
 
 	if (messege && messege.name == "openSummaryModal") {
 		// console.log("doing sut")
@@ -57,20 +59,28 @@ document.addEventListener("dragover", (e) => {
 	console.log("mouse x and y are", mouseX, mouseY);
 });
 
-window.addEventListener("message", (event) => {
-	console.log(event.origin, event.data , event.target, event.type);
-	if (event.data && event.data.name && event.data.name == "briefai-summary-drag-iframe" && oldiFrame) {
-		console.log(event.data)
+window.addEventListener("message", (message) => {
+	let messageData = message.data;
+
+
+	if(messageData && messageData.name == "briefai-auth-result"){
+		browser.runtime.sendMessage({name: "briefai-auth-result", user: messageData.user});
+		console.log("GOT mESSGE", messageData.user);
+	}
+
+	// console.log(message.origin, messageData , message.target, message.type);
+	if (messageData && messageData.name && messageData.name == "briefai-summary-drag-iframe" && oldiFrame) {
+		console.log(messageData)
 		setiFramePosition(oldiFrame);
 	}
 
-	if (event.data && event.data.name && event.data.name == "briefai-summary-dragstart-iframe" && oldiFrame) {
+	if (messageData && messageData.name && messageData.name == "briefai-summary-dragstart-iframe" && oldiFrame) {
 		oldiFrame.style.pointerEvents = "none"
 	}
-	if (event.data && event.data.name && event.data.name == "briefai-summary-dragend-iframe" && oldiFrame) {
+	if (messageData && messageData.name && messageData.name == "briefai-summary-dragend-iframe" && oldiFrame) {
 		oldiFrame.style.pointerEvents = "auto"
 	}
-	if (event.data && event.data.name && event.data.name == "briefai-summary-close-iframe" && oldiFrame) {
+	if (messageData && messageData.name && messageData.name == "briefai-summary-close-iframe" && oldiFrame) {
 		oldiFrame.remove()
 	}
 });

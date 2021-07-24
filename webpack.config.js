@@ -13,6 +13,7 @@ module.exports = {
 		browserPopup: './src/popup/browserPopup.tsx',
 		options: './src/options/options.ts',
 		summaryModal: './src/contentScripts/summaryModal.ts',
+		login: './src/login/login.tsx',
 	},
 
 	output: {
@@ -100,6 +101,12 @@ module.exports = {
 			chunks: ["summaryModal"],
 			template: './src/contentScripts/summaryModal.html',
 			filename: 'summaryModal.html'
+		}),
+		new HtmlWebpackPlugin({
+			inject: true,
+			chunks: ["login"],
+			template: './src/login/login.html',
+			filename: 'login/login.html'
 		}),
 
 

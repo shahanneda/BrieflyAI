@@ -6,8 +6,8 @@
   "icons": {
     "64": "icons/icon.png"
   },
-  "web_accessible_resources": ["summaryModal.html", "summaryModal.js", "summaryModal.css", "popup/browserPopup.html", "popup/browserPopup.js"],
-  "permissions": ["contextMenus"],
+  "web_accessible_resources": ["summaryModal.html", "summaryModal.js", "summaryModal.css", "popup/browserPopup.html", "popup/browserPopup.js", "login/login.html", "login/login.js"],
+  "permissions": ["contextMenus", "storage"],
   "background": {
     "scripts": [
       "background_script.js"

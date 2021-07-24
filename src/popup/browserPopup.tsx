@@ -33,6 +33,13 @@ interface AppContextInterface {
 export const AppContext = React.createContext<AppContextInterface>(null);
 
 
+function getLoginData(){
+	browser.storage.local.get("userCred").then( userCred => {
+		console.log("GOT USER CRED IN POPUP", userCred);
+	});;
+}
+
+getLoginData();
 
 function App() {
 	const [option, setOption] = React.useState(false);
@@ -43,6 +50,7 @@ function App() {
 	});
 
 	const classes  = useStyles();
+
 
 
 

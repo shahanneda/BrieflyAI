@@ -1,6 +1,7 @@
 import { AppContext } from '@/popup/browserPopup';
 import { Button, CardHeader, createStyles, makeStyles, withStyles } from '@material-ui/core';
 import React, { useContext } from 'react'
+import { browser } from 'webextension-polyfill-ts';
 
 interface MyAccountProps {
 }
@@ -23,6 +24,10 @@ const useStyles = makeStyles({
 	}
 });
 
+const sendLoginRequest = () => {
+	browser.runtime.sendMessage({name: "login-request"});
+}
+
 const MyAccount = ({ }: MyAccountProps) => {
 	const appContext = useContext(AppContext);
 	const classes = useStyles();
@@ -35,7 +40,7 @@ const MyAccount = ({ }: MyAccountProps) => {
 			{/* <div>
 				You are currently {appContext.loggedIn ? 'logged in' : 'not logged in'}.
 			</div> */}
-			<Button variant="contained" color="primary" >Login</Button>
+			<Button variant="contained" color="primary"  onClick={sendLoginRequest}>Login</Button>
 
 		</div>
 	)
